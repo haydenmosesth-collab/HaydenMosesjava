@@ -6,7 +6,7 @@ public class Prep6{
     sum += i;
    }
   }
-  System.out.printlm("Sum of even numbers = " +sum);
+  System.out.println("Sum of even numbers = " +sum);
  }
 }
  
