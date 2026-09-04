@@ -1,0 +1,29 @@
+public class ArrayMinMax {
+    public static void main(String[] args) {
+        // Sample array initialization
+        int[] numbers = {23, 5, 89, 43, 7, 12, 67, -3, 99, 45};
+        
+        // Assume the first element is both the max and min initially
+        int max = numbers[0];
+        int min = numbers[0];
+        
+        // Traverse the array starting from the second element
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] > max) {
+                max = numbers[i]; // Update max if current element is larger
+            }
+            if (numbers[i] < min) {
+                min = numbers[i]; // Update min if current element is smaller
+            }
+        }
+        
+        // Print the array elements
+        System.out.print("Array elements: ");
+        for (int num : numbers) {
+            System.out.print(num + " ");
+        }
+        
+        System.out.println("\nMaximum Value: " + max);
+        System.out.println("Minimum Value: " + min);
+    }
+}
