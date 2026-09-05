@@ -1,0 +1,24 @@
+class Fan {
+    String brand;
+    int speed;
+
+    void switchOn() {
+        System.out.println(brand + " fan switched ON at speed" + speed);
+    }
+
+    void switchOff() {
+        System.out.println(brand + " Fan switched OFF");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Fan fan = new Fan();
+
+        fan.brand = "Havells";
+        fan.speed = 3;
+
+        fan.switchOn();
+        fan.switchOff();
+    }
+}
