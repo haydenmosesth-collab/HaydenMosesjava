@@ -1,0 +1,25 @@
+class Book {
+    String title;
+    String author;
+
+    void displayDetails() {
+        System.out.println("Title: " + title + ", Author: " + author);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Book book = new Book();
+
+        book.title = "Java Basics";
+        book.author = "R. Kumar";
+
+        System.out.println("Before update:");
+        book.displayDetails();
+
+        book.title = "Advanced Java";
+
+        System.out.println("After update:");
+        book.displayDetails();
+    }
+}
