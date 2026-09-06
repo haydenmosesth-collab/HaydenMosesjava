@@ -1,0 +1,29 @@
+class Book {
+    String title;
+    String author;
+
+    void displayDetails() {
+        System.out.println("Title: " + title + ", Author: " + author);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Book book1 = new Book();
+        Book book2 = new Book();
+        Book book3 = new Book();
+
+        book1.title = "Java Basics";
+        book1.author = "R. Kumar";
+
+        book2.title = "Data Structures";
+        book2.author = "S.Menon";
+
+        book3.title = "Operating Systems";
+        book3.author = "A. Verma";
+
+        book1.displayDetails();
+        book2.displayDetails();
+        book3.displayDetails();
+    }
+}
