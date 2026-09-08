@@ -1,0 +1,57 @@
+// Parent Class (Superclass)
+class Animal {
+    String name;
+
+    Animal(String name) {
+        this.name = name;
+    }
+
+    // Method to be overridden
+    void makeText() {
+        System.out.println(name + " makes a generic animal sound.");
+    }
+}
+
+// Child Class (Subclass) inheriting from Animal
+class Dog extends Animal {
+    
+    // Using 'super' to call the Parent Class constructor
+    Dog(String name) {
+        super(name); 
+    }
+
+    // POLYMORPHISM: Overriding the parent's method
+    @Override
+    void makeText() {
+        System.out.println(name + " barks: Woof! Woof!");
+    }
+}
+
+// Another Child Class inheriting from Animal
+class Cat extends Animal {
+    Cat(String name) {
+        super(name);
+    }
+
+    // POLYMORPHISM: Overriding the parent's method differently
+    @Override
+    void makeText() {
+        System.out.println(name + " meows: Meow!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // POLYMORPHISM IN ACTION: 
+        // We create a list of generic Animals, but fill it with specific Dogs and Cats.
+        Animal[] shelter = new Animal[3];
+        shelter[0] = new Dog("Buddy");
+        shelter[1] = new Cat("Whiskers");
+        shelter[2] = new Animal("Unknown Creature");
+
+        // Java automatically determines the correct method to call at runtime
+        for (Animal a : shelter) {
+            a.makeText(); 
+        }
+    }
+}
