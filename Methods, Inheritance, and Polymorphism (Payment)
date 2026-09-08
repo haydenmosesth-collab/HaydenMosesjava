@@ -1,0 +1,52 @@
+// Base Payment Class
+class Payment {
+    double processingFee = 0.0;
+
+    void processPayment(double amount) {
+        double total = amount + processingFee;
+        System.out.println("Processing a standard payment of $" + total);
+    }
+}
+
+// Inheritance: CreditCard is a type of Payment
+class CreditCardPayment extends Payment {
+    
+    // Credit cards have a fixed processing fee
+    CreditCardPayment() {
+        this.processingFee = 2.50; 
+    }
+
+    @Override
+    void processPayment(double amount) {
+        double total = amount + processingFee;
+        System.out.println("Processing Credit Card Payment... Fee charged: $2.50. Total: $" + total);
+    }
+}
+
+// Inheritance: PayPal is a type of Payment
+class PayPalPayment extends Payment {
+    
+    @Override
+    void processPayment(double amount) {
+        // PayPal takes a 2% percentage fee instead of a flat fee
+        double dynamicFee = amount * 0.02;
+        double total = amount + dynamicFee;
+        System.out.println("Redirecting to PayPal... 2% Fee charged: $" + dynamicFee + ". Total: $" + total);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        double orderTotal = 100.0;
+
+        // Polymorphic reference: The type is 'Payment', but the object is a 'CreditCardPayment'
+        Payment paymentMethod1 = new CreditCardPayment();
+        paymentMethod1.processPayment(orderTotal);
+
+        System.out.println("------------------------------------------------");
+
+        // Switching the same reference type to a 'PayPalPayment'
+        Payment paymentMethod2 = new PayPalPayment();
+        paymentMethod2.processPayment(orderTotal);
+    }
+}
