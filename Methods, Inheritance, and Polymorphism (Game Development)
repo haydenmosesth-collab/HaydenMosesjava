@@ -1,0 +1,91 @@
+// Parent Class (Superclass)
+class Character {
+    String name;
+    int health;
+
+    Character(String name, int health) {
+        this.name = name;
+        this.health = health;
+    }
+
+    // Method to take damage
+    void takeDamage(int damage) {
+        this.health -= damage;
+        System.out.println(name + " takes " + damage + " damage. Health left: " + health);
+    }
+
+    // Method to be overridden by subclasses (Polymorphism)
+    void attack(Character target) {
+        System.out.println(name + " performs a basic punch on " + target.name);
+        target.takeDamage(10);
+    }
+}
+
+// Subclass 1: Warrior (Inherits from Character)
+class Warrior extends Character {
+    int shieldBlock;
+
+    Warrior(String name, int health, int shieldBlock) {
+        super(name, health); // Calls the Character constructor
+        this.shieldBlock = shieldBlock;
+    }
+
+    // Overriding takeDamage to account for shield defense
+    @Override
+    void takeDamage(int damage) {
+        int actualDamage = Math.max(0, damage - shieldBlock);
+        System.out.println(name + "'s shield blocks " + shieldBlock + " damage!");
+        super.takeDamage(actualDamage); // Calls parent's takeDamage with reduced value
+    }
+
+    // Overriding attack for a heavy sword strike
+    @Override
+    void attack(Character target) {
+        System.out.println(name + " swings a heavy Greatsword at " + target.name + "!");
+        target.takeDamage(25); 
+    }
+}
+
+// Subclass 2: Archer (Inherits from Character)
+class Archer extends Character {
+    int arrowCount;
+
+    Archer(String name, int health, int arrowCount) {
+        super(name, health);
+        this.arrowCount = arrowCount;
+    }
+
+    // Overriding attack to fire arrows
+    @Override
+    void attack(Character target) {
+        if (arrowCount > 0) {
+            arrowCount--;
+            System.out.println(name + " fires an arrow at " + target.name + "! (Arrows left: " + arrowCount + ")");
+            target.takeDamage(18);
+        } else {
+            System.out.println(name + " is out of arrows! Out of options, they throw a rock.");
+            super.attack(target); // Falls back to the parent class generic attack
+        }
+    }
+}
+
+// Main Execution
+public class Main {
+    public static void main(String[] args) {
+        // Polymorphism: Creating different objects using the Parent Type reference
+        Character player1 = new Warrior("Thorin the Knight", 100, 5);
+        Character player2 = new Archer("Legolas the Elf", 80, 2);
+
+        System.out.println("--- ROUND 1 ---");
+        // Warrior attacks Archer
+        player1.attack(player2); 
+
+        System.out.println("\n--- ROUND 2 ---");
+        // Archer attacks Warrior back (Notice how the Warrior's unique shield logic triggers automatically)
+        player2.attack(player1); 
+
+        System.out.println("\n--- ROUND 3 (Archer runs out of arrows) ---");
+        player2.attack(player1); // Second arrow
+        player2.attack(player1); // Out of arrows, uses basic punch (super.attack)
+    }
+}
