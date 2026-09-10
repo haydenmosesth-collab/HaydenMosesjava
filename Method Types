@@ -1,0 +1,64 @@
+public class MethodTypesDemo {
+
+    // =========================================================================
+    // TYPE 1: No Parameter and No Return Value (void)
+    // Purpose: Best for printing text, instructions, or resetting states.
+    // =========================================================================
+    public void printWelcomeMessage() {
+        System.out.println("=== Welcome to the Java Calculator Tool ===");
+        System.out.println("Ready to perform operations.");
+    }
+
+    // =========================================================================
+    // TYPE 2: Has Parameters but No Return Value (void)
+    // Purpose: Takes inputs to do an action directly (like updating data or printing).
+    // =========================================================================
+    public void printSum(int num1, int num2) {
+        int sum = num1 + num2;
+        // Directly prints the result instead of sending it back
+        System.out.println("The calculated sum is: " + sum);
+    }
+
+    // =========================================================================
+    // TYPE 3: No Parameter but Has a Return Value
+    // Purpose: Used to fetch data, generate values, or read system metrics.
+    // =========================================================================
+    public double getPiValue() {
+        // Returns the value of PI to whoever called this method
+        return 3.14159; 
+    }
+
+    // =========================================================================
+    // TYPE 4: Has Parameters and Has a Return Value
+    // Purpose: The most common type. Perfect for processing inputs and returning results.
+    // =========================================================================
+    public int multiply(int a, int b) {
+        int result = a * b;
+        return result; // Sends the mathematical product back
+    }
+
+    // =========================================================================
+    // MAIN EXECUTION
+    // =========================================================================
+    public static void main(String[] args) {
+        // Create an object of the class to call its non-static methods
+        MethodTypesDemo demo = new MethodTypesDemo();
+
+        // 1. Calling Type 1 (No inputs, no output saved)
+        demo.printWelcomeMessage();
+        System.out.println("----------------------------------------");
+
+        // 2. Calling Type 2 (Pass inputs inside the parentheses, no output saved)
+        demo.printSum(15, 25);
+        System.out.println("----------------------------------------");
+
+        // 3. Calling Type 3 (No inputs, but we store the returned value in a variable)
+        double pi = demo.getPiValue();
+        System.out.println("Value of PI retrieved: " + pi);
+        System.out.println("----------------------------------------");
+
+        // 4. Calling Type 4 (Pass inputs and store the returned value)
+        int product = demo.multiply(6, 7);
+        System.out.println("Multiplication result retrieved: " + product);
+    }
+}
