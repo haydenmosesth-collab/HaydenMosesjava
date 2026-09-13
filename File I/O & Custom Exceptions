@@ -1,0 +1,22 @@
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.List;
+
+class InvalidDataException extends Exception {
+    public InvalidDataException(String message) {
+        super(message);
+    }
+}
+
+public class FileIOPractice {
+    public static void processFile(Path path) throws IOException, InvalidDataException {
+        if (!Files.exists(path)) {
+            throw new InvalidDataException("File does not exist: " + path);
+        }
+        
+        List<String> lines = Files.readAllLines(path);
+        for (String line : lines) {
+            System.out.println("Processed: " + line.toUpperCase());
+        }
+    }
+}
