@@ -1,0 +1,29 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+record Employee(String name, String department, double salary) {}
+
+public class StreamPractice {
+    public static void main(String[] args) {
+        List<Employee> employees = List.of(
+            new Employee("Alice", "IT", 75000),
+            new Employee("Bob", "HR", 50000),
+            new Employee("Charlie", "IT", 82000),
+            new Employee("Diana", "HR", 60000)
+        );
+
+        // Group employees by department
+        Map<String, List<Employee>> byDept = employees.stream()
+            .collect(Collectors.groupingBy(Employee::department));
+
+        // Calculate average salary per department
+        Map<String, Double> avgSalaryByDept = employees.stream()
+            .collect(Collectors.groupingBy(
+                Employee::department,
+                Collectors.averagingDouble(Employee::salary)
+            ));
+
+        avgSalaryByDept.forEach((dept, avg) -> 
+            System.out.println(dept + " Average Salary: $" + avg));
+    }
+}
