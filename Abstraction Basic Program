@@ -1,0 +1,27 @@
+// Abstract class
+abstract class Animal {
+    // Abstract method (does not have a body)
+    abstract void sound();
+
+    // Regular method
+    void sleep() {
+        System.out.println("This animal is sleeping...");
+    }
+}
+
+// Subclass implementing the abstract method
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks: Woof Woof");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Animal obj = new Animal(); // Error! Cannot instantiate abstract class.
+        Animal myDog = new Dog();
+        myDog.sound();
+        myDog.sleep();
+    }
+}
