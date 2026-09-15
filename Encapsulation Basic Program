@@ -1,0 +1,22 @@
+class Student {
+    // Private data hiding
+    private String name;
+
+    // Getter method to retrieve the name
+    public String getName() {
+        return name;
+    }
+
+    // Setter method to set/update the name
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student student = new Student();
+        student.setName("Alice"); // Setting value
+        System.out.println("Student Name: " + student.getName()); // Getting value
+    }
+}
