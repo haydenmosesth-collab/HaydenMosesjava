@@ -1,0 +1,41 @@
+// Abstract class representing a generic Payment method
+abstract class PaymentProcessor {
+    // Abstract method forcing subclasses to implement payment logic
+    abstract void processPayment(double amount);
+
+    // Common method shared by all payment types
+    public void printReceipt(double amount) {
+        System.out.println("Receipt generated for amount: $" + amount);
+    }
+}
+
+// Credit Card implementation
+class CreditCardPayment extends PaymentProcessor {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " through Credit Card network securely.");
+    }
+}
+
+// PayPal implementation
+class PayPalPayment extends PaymentProcessor {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Redirecting to PayPal login to process $" + amount);
+    }
+}
+
+public class ECommerceApp {
+    public static void main(String[] args) {
+        // High-level system doesn't care about the complex underlying implementation
+        PaymentProcessor payment1 = new CreditCardPayment();
+        payment1.processPayment(150.75);
+        payment1.printReceipt(150.75);
+
+        System.out.println("-------------------");
+
+        PaymentProcessor payment2 = new PayPalPayment();
+        payment2.processPayment(45.50);
+        payment2.printReceipt(45.50);
+    }
+}
