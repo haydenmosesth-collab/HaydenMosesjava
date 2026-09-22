@@ -1,0 +1,24 @@
+public class ArrayOperations {
+    public static void main(String[] args) {
+        int[] productIds = {5001, 5002, 5003, 5004};
+
+        // Modifying an element at a specific index
+        productIds[2] = 9999; // Changes 5003 to 9999
+
+        // Searching for a value
+        int searchTarget = 9999;
+        boolean found = false;
+
+        for (int i = 0; i < productIds.length; i++) {
+            if (productIds[i] == searchTarget) {
+                System.out.println("Found " + searchTarget + " at index: " + i);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println(searchTarget + " was not found in the array.");
+        }
+    }
+}
