@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class SpeedTracker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        final int SPEED_LIMIT = 80; // Speed limit in km/h
+
+        System.out.print("Enter the number of vehicles to track: ");
+        int totalVehicles = scanner.nextInt();
+
+        // 1. Create a 1D array to store vehicle speeds
+        int[] vehicleSpeeds = new int[totalVehicles];
+
+        // 2. Collect speeds from the camera feed simulation
+        System.out.println("\n--- Recording Vehicle Speeds (km/h) ---");
+        for (int i = 0; i < vehicleSpeeds.length; i++) {
+            System.out.print("Vehicle #" + (i + 1) + " speed: ");
+            vehicleSpeeds[i] = scanner.nextInt();
+        }
+
+        // 3. Analyze the array data
+        int speedSum = 0;
+        int fineCount = 0;
+
+        // Using a for-each loop to process data easily
+        for (int speed : vehicleSpeeds) {
+            speedSum += speed; // Add to total for calculating average
+            
+            if (speed > SPEED_LIMIT) {
+                fineCount++; // Count how many crossed the speed limit
+            }
+        }
+
+        double averageSpeed = (double) speedSum / vehicleSpeeds.length;
+
+        // 4. Print the Traffic Analysis Dashboard
+        System.out.println("\n============== TRAFFIC REPORT ==============");
+        System.out.println("Total Vehicles Monitored : " + vehicleSpeeds.length);
+        System.out.printf("Average Traffic Speed    : %.2f km/h\n", averageSpeed);
+        System.out.println("Speed Limit Violations   : " + fineCount);
+        System.out.println("============================================");
+
+        scanner.close();
+    }
+}
