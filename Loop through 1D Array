@@ -1,0 +1,17 @@
+public class ArrayLoops {
+    public static void main(String[] args) {
+        String[] employeeIds = {"EMP01", "EMP02", "EMP03", "EMP04"};
+
+        // Loop using the array's length property
+        System.out.println("Using standard for loop:");
+        for (int i = 0; i < employeeIds.length; i++) {
+            System.out.println("Index " + i + ": " + employeeIds[i]);
+        }
+
+        // Using an enhanced for-each loop (simpler syntax)
+        System.out.println("\nUsing enhanced for loop:");
+        for (String id : employeeIds) {
+            System.out.println("ID: " + id);
+        }
+    }
+}
