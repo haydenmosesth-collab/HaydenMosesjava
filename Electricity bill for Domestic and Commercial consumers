@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+class Consumer {
+    int units;
+
+    Consumer(int units) {
+        this.units = units;
+    }
+
+    double calculateBill() {
+        return 0;
+    }
+}
+
+class Domestic extends Consumer {
+    Domestic(int units) {
+        super(units);
+    }
+
+    double calculateBill() {
+        double bill = 0;
+
+        if (units <= 100)
+            bill = units * 1.5;
+        else if (units <= 200)
+            bill = 100 * 1.5 + (units - 100) * 2.5;
+        else
+            bill = 100 * 1.5 + 100 * 2.5 +
+                   (units - 200) * 4;
+
+        return bill;
+    }
+}
+
+class Commercial extends Consumer {
+    Commercial(int units) {
+        super(units);
+    }
+
+    double calculateBill() {
+        return units * 6.0;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter consumer type (1-Domestic, 2-Commercial): ");
+        int type = sc.nextInt();
+
+        System.out.print("Enter units: ");
+        int units = sc.nextInt();
+
+        Consumer c;
+
+        if (type == 1)
+            c = new Domestic(units);
+        else
+            c = new Commercial(units);
+
+        System.out.println("Electricity Bill = Rs." +
+                           c.calculateBill());
+    }
+}
