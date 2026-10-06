@@ -1,0 +1,61 @@
+class Vehicle {
+    String brand;
+    int speed;
+
+    Vehicle(String brand, int speed) {
+        this.brand = brand;
+        this.speed = speed;
+    }
+
+    void display() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Speed: " + speed + " km/h");
+    }
+}
+
+class TwoWheeler extends Vehicle {
+    TwoWheeler(String brand, int speed) {
+        super(brand, speed);
+    }
+
+    void type() {
+        System.out.println("Type: Two-Wheeler");
+    }
+}
+
+class FourWheeler extends Vehicle {
+    FourWheeler(String brand, int speed) {
+        super(brand, speed);
+    }
+
+    void type() {
+        System.out.println("Type: Four-Wheeler");
+    }
+}
+
+class HeavyVehicle extends Vehicle {
+    HeavyVehicle(String brand, int speed) {
+        super(brand, speed);
+    }
+
+    void type() {
+        System.out.println("Type: Heavy Vehicle");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        TwoWheeler t = new TwoWheeler("Honda", 100);
+        FourWheeler f = new FourWheeler("Toyota", 180);
+        HeavyVehicle h = new HeavyVehicle("Volvo", 90);
+
+        t.type();
+        t.display();
+
+        f.type();
+        f.display();
+
+        h.type();
+        h.display();
+    }
+}
