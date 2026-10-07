@@ -1,0 +1,73 @@
+import java.io.*;
+
+interface Payment {
+    void pay(double amount);
+}
+
+class CashPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid by Cash: Rs." + amount);
+    }
+}
+
+class CardPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid by Card: Rs." + amount);
+    }
+}
+
+class BookingException extends Exception {
+    BookingException(String message) {
+        super(message);
+    }
+}
+
+class MovieBooking {
+    static double calculateCost(String category, int seats) {
+
+        double price;
+
+        if (category.equalsIgnoreCase("Gold"))
+            price = 250;
+        else if (category.equalsIgnoreCase("Silver"))
+            price = 180;
+        else
+            price = 120;
+
+        return price * seats;
+    }
+
+    public static void main(String[] args) {
+
+        String category = "Gold";
+        int seats = 2;
+
+        try {
+            if (seats <= 0)
+                throw new BookingException(
+                    "Invalid number of seats");
+
+            double cost =
+                calculateCost(category, seats);
+
+            Payment payment =
+                new CardPayment();
+
+            payment.pay(cost);
+
+            FileWriter fw =
+                new FileWriter("booking.txt", true);
+
+            fw.write("Movie booking - " +
+                     category + " - Seats: " +
+                     seats + " - Amount: " +
+                     cost + "\n");
+
+            fw.close();
+
+        } catch (BookingException |
+                 IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
