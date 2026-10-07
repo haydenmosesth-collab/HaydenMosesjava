@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+abstract class Employee {
+    String name;
+    int id;
+
+    Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    abstract double calculateSalary();
+
+    abstract void displayDetails();
+}
+
+class PermanentEmployee extends Employee {
+    double basic;
+
+    PermanentEmployee(int id, String name, double basic) {
+        super(id, name);
+        this.basic = basic;
+    }
+
+    double calculateSalary() {
+        return basic + basic * 0.20;
+    }
+
+    void displayDetails() {
+        System.out.println("Permanent Employee");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Salary: " +
+                           calculateSalary());
+    }
+}
+
+class ContractEmployee extends Employee {
+    double amount;
+
+    ContractEmployee(int id, String name, double amount) {
+        super(id, name);
+        this.amount = amount;
+    }
+
+    double calculateSalary() {
+        return amount;
+    }
+
+    void displayDetails() {
+        System.out.println("Contract Employee");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Salary: " +
+                           calculateSalary());
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+
+        Employee e1 =
+            new PermanentEmployee(101, "Arun", 30000);
+
+        Employee e2 =
+            new ContractEmployee(102, "Kumar", 25000);
+
+        e1.displayDetails();
+        e2.displayDetails();
+    }
+}
