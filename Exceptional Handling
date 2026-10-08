@@ -1,0 +1,76 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+// User-defined exception
+class InvalidAgeException extends Exception {
+    InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+
+    // Method using throws
+    static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be 18 or above");
+        }
+        System.out.println("Eligible to vote");
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter first number: ");
+            int a = sc.nextInt();
+
+            System.out.print("Enter second number: ");
+            int b = sc.nextInt();
+
+            // ArithmeticException
+            int result = a / b;
+            System.out.println("Result: " + result);
+
+            // throw keyword
+            System.out.print("Enter your age: ");
+            int age = sc.nextInt();
+
+            checkAge(age);
+
+            // ArrayIndexOutOfBoundsException example
+            int[] numbers = {10, 20, 30};
+            System.out.println("Array value: " + numbers[2]);
+        }
+
+        // Multiple catch blocks
+        catch (ArithmeticException e) {
+            System.out.println("Exception: Cannot divide by zero");
+        }
+
+        catch (InputMismatchException e) {
+            System.out.println("Exception: Please enter integers only");
+        }
+
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Exception: Invalid array index");
+        }
+
+        catch (InvalidAgeException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+
+        catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+
+        // Always executed
+        finally {
+            System.out.println("Finally block executed");
+            sc.close();
+        }
+
+        System.out.println("Program completed.");
+    }
+}
