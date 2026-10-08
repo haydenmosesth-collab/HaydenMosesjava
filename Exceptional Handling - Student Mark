@@ -1,0 +1,68 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+// User-defined exception
+class InvalidMarksException extends Exception {
+    InvalidMarksException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+
+    // Method using throws
+    static void checkMarks(int marks) throws InvalidMarksException {
+
+        if (marks < 0 || marks > 100) {
+            throw new InvalidMarksException(
+                "Marks must be between 0 and 100"
+            );
+        }
+
+        // Calculate grade
+        if (marks >= 90) {
+            System.out.println("Grade: A");
+        }
+        else if (marks >= 75) {
+            System.out.println("Grade: B");
+        }
+        else if (marks >= 60) {
+            System.out.println("Grade: C");
+        }
+        else if (marks >= 50) {
+            System.out.println("Grade: D");
+        }
+        else {
+            System.out.println("Grade: F");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter student marks: ");
+            int marks = sc.nextInt();
+
+            checkMarks(marks);
+        }
+
+        catch (InputMismatchException e) {
+            System.out.println("Error: Please enter numbers only.");
+        }
+
+        catch (InvalidMarksException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        catch (Exception e) {
+            System.out.println("Unexpected error occurred.");
+        }
+
+        finally {
+            System.out.println("Marks processing completed.");
+            sc.close();
+        }
+    }
+}
