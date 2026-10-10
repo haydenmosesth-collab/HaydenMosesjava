@@ -1,0 +1,37 @@
+
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        try {
+            // Create a file and write data
+            FileWriter fw = new FileWriter("student.txt");
+
+            fw.write("Student Name: Arun\n");
+            fw.write("Department: CSE\n");
+            fw.write("Marks: 90\n");
+
+            fw.close();
+
+            System.out.println("Data written successfully.");
+
+            // Read data from the file
+            FileReader fr = new FileReader("student.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            String line;
+
+            System.out.println("File Contents:");
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            br.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
