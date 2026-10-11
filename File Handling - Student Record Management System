@@ -1,0 +1,63 @@
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            // Get student details
+            System.out.print("Enter student name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter register number: ");
+            String regNo = sc.nextLine();
+
+            System.out.print("Enter marks: ");
+            int marks = Integer.parseInt(sc.nextLine());
+
+            if (marks < 0 || marks > 100) {
+                throw new IllegalArgumentException(
+                    "Marks must be between 0 and 100");
+            }
+
+            // Save details to file
+            try (FileWriter fw =
+                     new FileWriter("student.txt", true)) {
+                fw.write("Name: " + name + "\n");
+                fw.write("Register Number: " + regNo + "\n");
+                fw.write("Marks: " + marks + "\n");
+                fw.write("--------------------\n");
+            }
+
+            System.out.println("Student record saved successfully.");
+
+            // Read and display all saved records
+            System.out.println("\nStudent Records:");
+
+            try (BufferedReader br =
+                     new BufferedReader(
+                         new FileReader("student.txt"))) {
+                String line;
+
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Error: Marks must be an integer.");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
+        finally {
+            sc.close();
+            System.out.println("Program completed.");
+        }
+    }
+}
