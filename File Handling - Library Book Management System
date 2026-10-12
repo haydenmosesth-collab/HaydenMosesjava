@@ -1,0 +1,52 @@
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            // Get book details
+            System.out.print("Enter book title: ");
+            String title = sc.nextLine();
+
+            System.out.print("Enter author name: ");
+            String author = sc.nextLine();
+
+            System.out.print("Enter book ID: ");
+            String id = sc.nextLine();
+
+            // Write details to file
+            try (FileWriter fw =
+                     new FileWriter("library.txt", true)) {
+                fw.write("Book ID: " + id + "\n");
+                fw.write("Title: " + title + "\n");
+                fw.write("Author: " + author + "\n");
+                fw.write("----------------------\n");
+            }
+
+            System.out.println("Book details saved successfully.");
+
+            // Read and display book records
+            System.out.println("\nLibrary Book Records:");
+
+            try (BufferedReader br =
+                     new BufferedReader(
+                         new FileReader("library.txt"))) {
+                String line;
+
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
+        finally {
+            sc.close();
+            System.out.println("Library operation completed.");
+        }
+    }
+}
