@@ -1,0 +1,29 @@
+public class SimpleGenericClass {
+    
+    // A simple generic class using type parameter 'T'
+    public static class HoldAnything<T> {
+        private T data;
+
+        public void set(T data) {
+            this.data = data;
+        }
+
+        public T get() {
+            return this.data;
+        }
+    }
+
+    public static void main(String[] args) {
+        // 1. Create a box specifically for Strings
+        HoldAnything<String> nameBox = new HoldAnything<>();
+        nameBox.set("Java Generics");
+        String name = nameBox.get(); // No manual casting needed!
+        System.out.println("String Value: " + name);
+
+        // 2. Reuse the exact same class for Integers
+        HoldAnything<Integer> numberBox = new HoldAnything<>();
+        numberBox.set(123);
+        Integer number = numberBox.get();
+        System.out.println("Integer Value: " + number);
+    }
+}
