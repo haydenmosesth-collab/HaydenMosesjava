@@ -1,0 +1,22 @@
+public class SimpleGenericMethod {
+
+    // A generic method that accepts an array of any object type 'E'
+    public static <E> void displayArray(E[] array) {
+        for (E element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println(); // New line after printing
+    }
+
+    public static void main(String[] args) {
+        // Set up arrays using Wrapper objects (Generics don't accept raw ints)
+        Integer[] intArray = {10, 20, 30, 40};
+        String[] textArray = {"Apple", "Banana", "Orange"};
+
+        System.out.print("Printing Integers: ");
+        displayArray(intArray);
+
+        System.out.print("Printing Strings: ");
+        displayArray(textArray);
+    }
+}
