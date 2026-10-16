@@ -1,0 +1,23 @@
+import java.util.List;
+
+public class SimpleExportExample {
+
+    // A single generic method that prints a list of any type 'T'
+    public static <T> void printList(List<T> list) {
+        for (T item : list) {
+            System.out.println("- " + item);
+        }
+    }
+
+    public static void main(String[] args) {
+        // List of names (Strings)
+        List<String> names = List.of("Alice", "Bob");
+        System.out.println("Printing Names:");
+        printList(names);
+
+        // List of prices (Doubles)
+        List<Double> prices = List.of(19.99, 5.50);
+        System.out.println("\nPrinting Prices:");
+        printList(prices);
+    }
+}
