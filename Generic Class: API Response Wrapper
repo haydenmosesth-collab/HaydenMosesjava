@@ -1,0 +1,23 @@
+public class SimpleApiExample {
+
+    // A generic response wrapper that holds any data type 'T'
+    public static class ApiResponse<T> {
+        public String message;
+        public T data; // This can be a User, a Product, or a String
+
+        public ApiResponse(String message, T data) {
+            this.message = message;
+            this.data = data;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Wrap a String message
+        ApiResponse<String> textResponse = new ApiResponse<>("Loaded text", "Hello World");
+        System.out.println(textResponse.message + ": " + textResponse.data);
+
+        // Wrap an Integer ID (reusing the exact same class)
+        ApiResponse<Integer> idResponse = new ApiResponse<>("Loaded ID", 404);
+        System.out.println(idResponse.message + ": " + idResponse.data);
+    }
+}
