@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class RealWorldInheritanceDemo {
+
+    // Domain models
+    record User(Long id, String username) {}
+    record Product(Long id, String name, double price) {}
+
+    // 1. Generic Base Repository (Handles universal CRUD operations)
+    public static class BaseRepository<T, ID> {
+        protected List<T> databaseMock = new ArrayList<>();
+
+        public void save(T entity) {
+            databaseMock.add(entity);
+            System.out.println("Saved entity into database.");
+        }
+
+        public List<T> findAll() {
+            return databaseMock;
+        }
+    }
+
+    // 2. Specific Subclass inheriting the database functionality for Users
+    public static class UserRepository extends BaseRepository<User, Long> {
+        // Inherits save() and findAll() automatically. 
+        // We can add User-specific database queries here:
+        public User findByUsername(String username) {
+            return databaseMock.stream()
+                    .filter(u -> u.username().equalsIgnoreCase(username))
+                    .findFirst()
+                    .orElse(null);
+        }
+    }
+
+    // 3. Specific Subclass inheriting the database functionality for Products
+    public static class ProductRepository extends BaseRepository<Product, Long> {
+        // We can add Product-specific logic here:
+        public void printDiscountedProducts(double discountRate) {
+            for (Product p : databaseMock) {
+                double salePrice = p.price() * (1 - discountRate);
+                System.out.println(p.name() + " Sale Price: $" + salePrice);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // Operating the User Repository
+        UserRepository userRepo = new UserRepository();
+        userRepo.save(new User(1L, "alice_dev"));
+        userRepo.save(new User(2L, "bob_coder"));
+        
+        User foundUser = userRepo.findByUsername("alice_dev");
+        System.out.println("Found Custom Query User: " + foundUser);
+        System.out.println("All Users: " + userRepo.findAll() + "\n");
+
+        // Operating the Product Repository
+        ProductRepository productRepo = new ProductRepository();
+        productRepo.save(new Product(101L, "Laptop", 1000.0));
+        productRepo.save(new Product(102L, "Headphones", 200.0));
+        
+        System.out.println("Promo Pricing:");
+        productRepo.printDiscountedProducts(0.10); // 10% off
+    }
+}
