@@ -1,0 +1,35 @@
+public class BasicInheritanceDemo {
+
+    // Generic Base Class
+    public static class Storage<T> {
+        protected T item;
+        public void save(T item) { this.item = item; }
+        public T retrieve() { return item; }
+    }
+
+    // Subclass Variant A: Retains flexibility (still generic)
+    public static class SpecialStorage<T> extends Storage<T> {
+        public void printItem() {
+            System.out.println("Special item: " + retrieve());
+        }
+    }
+
+    // Subclass Variant B: Fixes the type to a specific class (String)
+    public static class TextStorage extends Storage<String> {
+        public int getTextLength() {
+            return item != null ? item.length() : 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Using Variant A (Still flexible)
+        SpecialStorage<Integer> intStorage = new SpecialStorage<>();
+        intStorage.save(42);
+        intStorage.printItem();
+
+        // Using Variant B (Locked into String functionality)
+        TextStorage textStorage = new TextStorage();
+        textStorage.save("Java Generics");
+        System.out.println("Text length: " + textStorage.getTextLength());
+    }
+}
