@@ -1,0 +1,43 @@
+import java.util.List;
+
+public class DataExporterDemo {
+
+    // The Generic Method: Accepts a list of any data type 'T' and prints it like a CSV row
+    public static <T> void exportToConsole(String tableName, List<T> records) {
+        System.out.println("--- Exporting Table: " + tableName.toUpperCase() + " ---");
+        
+        if (records == null || records.isEmpty()) {
+            System.out.println("[Empty Table]");
+            return;
+        }
+
+        // Loop through whatever object list was provided
+        for (int i = 0; i < records.size(); i++) {
+            System.out.println("Row " + (i + 1) + ": " + records.get(i).toString());
+        }
+        System.out.println("-----------------------------------------\n");
+    }
+
+    // Domain models
+    record LogEntry(String level, String message) {}
+    record Transaction(String txId, double amount) {}
+
+    public static void main(String[] args) {
+        // App Logs Dataset
+        List<LogEntry> systemLogs = List.of(
+            new LogEntry("INFO", "Server started on port 8080"),
+            new LogEntry("ERROR", "Database connection lost")
+        );
+
+        // Sales Dataset
+        List<Transaction> sales = List.of(
+            new Transaction("TXN9901", 150.50),
+            new Transaction("TXN9902", 45.00),
+            new Transaction("TXN9903", 1200.00)
+        );
+
+        // One generic utility method handles both completely distinct object structures
+        exportToConsole("System Logs", systemLogs);
+        exportToConsole("Financial Transactions", sales);
+    }
+}
