@@ -1,0 +1,56 @@
+import java.time.LocalDateTime;
+
+public class ApiResponseDemo {
+
+    // The Generic Wrapper used by all API endpoints
+    public static class ApiResponse<T> {
+        private String status;
+        private String message;
+        private T data;             // The dynamic payload (can be anything)
+        private LocalDateTime timestamp;
+
+        public ApiResponse(String status, String message, T data) {
+            this.status = status;
+            this.message = message;
+            this.data = data;
+            this.timestamp = LocalDateTime.now();
+        }
+
+        public T getData() { return data; }
+        
+        @Override
+        public String toString() {
+            return "[" + status + "] " + message + " | Data: " + data + " | At: " + timestamp;
+        }
+    }
+
+    // Dummy domain models
+    public static class User {
+        String name;
+        User(String name) { this.name = name; }
+        @Override public String toString() { return "User{name='" + name + "'}"; }
+    }
+
+    public static class Product {
+        String title;
+        Product(String title) { this.title = title; }
+        @Override public String toString() { return "Product{title='" + title + "'}"; }
+    }
+
+    public static void main(String[] args) {
+        // Enpoint 1: Returns User data
+        User user = new User("Alice Smith");
+        ApiResponse<User> userResponse = new ApiResponse<>("SUCCESS", "User found", user);
+        
+        // Endpoint 2: Returns Product data
+        Product product = new Product("Wireless Mouse");
+        ApiResponse<Product> productResponse = new ApiResponse<>("SUCCESS", "Product found", product);
+
+        // Accessing the data directly without typing or manual conversion crashes
+        User directUser = userResponse.getData();
+        System.out.println(userResponse);
+        System.out.println("Extracted User Name: " + directUser.name + "\n");
+        
+        System.out.println(productResponse);
+    }
+}
