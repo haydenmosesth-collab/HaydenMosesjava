@@ -1,0 +1,74 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class RealWorldEventEngineDemo {
+
+    // 1. Generic Event Container containing the dynamic payload 'T'
+    public static class Event<T> {
+        private final String eventName;
+        private final T payload;
+
+        public Event(String eventName, T payload) {
+            this.eventName = eventName;
+            this.payload = payload;
+        }
+
+        public T getPayload() { return payload; }
+        public String getEventName() { return eventName; }
+    }
+
+    // 2. Generic Consumer Interface to process incoming events
+    public interface EventListener<T> {
+        void onEventReceived(Event<T> event);
+    }
+
+    // 3. Simple Event Broker dispatching updates safely
+    public static class EventBroker<T> {
+        private final List<EventListener<T>> listeners = new ArrayList<>();
+
+        public void subscribe(EventListener<T> listener) {
+            listeners.add(listener);
+        }
+
+        public void broadcast(Event<T> event) {
+            System.out.println("\n[BROKER] Distributing event: " + event.getEventName());
+            for (EventListener<T> listener : listeners) {
+                listener.onEventReceived(event);
+            }
+        }
+    }
+
+    // Domain models
+    record Order(String orderId, double totalAmount) {}
+    record UserProfile(String email, boolean isActive) {}
+
+    public static void main(String[] args) {
+        
+        // --- SCENARIO A: Managing Financial E-Commerce Orders ---
+        EventBroker<Order> orderBroker = new EventBroker<>();
+        
+        // Create an anonymous handler/listener for orders
+        orderBroker.subscribe(event -> {
+            Order order = event.getPayload();
+            System.out.println("-> Shipping Dept: Processing box for ID " + order.orderId());
+        });
+
+        // Trigger the order event
+        Event<Order> newOrderEvent = new Event<>("ORDER_CREATED", new Order("ORD-99", 250.00));
+        orderBroker.broadcast(newOrderEvent);
+
+
+        // --- SCENARIO B: Managing Security User Account Events ---
+        EventBroker<UserProfile> securityBroker = new EventBroker<>();
+        
+        // Create a listener to log security changes
+        securityBroker.subscribe(event -> {
+            UserProfile user = event.getPayload();
+            System.out.println("-> Security Dept: Status update for " + user.email() + " | Active Status: " + user.isActive());
+        });
+
+        // Trigger the profile event
+        Event<UserProfile> securityEvent = new Event<>("USER_SUSPENDED", new UserProfile("bad_actor@email.com", false));
+        securityBroker.broadcast(securityEvent);
+    }
+}
