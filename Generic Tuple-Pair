@@ -1,0 +1,26 @@
+public class SimplePairDemo {
+
+    // A generic class holding two different types: 'K' and 'V'
+    public static class Pair<K, V> {
+        private final K key;
+        private final V value;
+
+        public Pair(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public K getKey() { return key; }
+        public V getValue() { return value; }
+    }
+
+    public static void main(String[] args) {
+        // Example A: Storing a String key and an Integer value (Map entry style)
+        Pair<String, Integer> idCard = new Pair<>("EmployeeID", 4509);
+        System.out.println(idCard.getKey() + " equals: " + idCard.getValue());
+
+        // Example B: Storing an Integer and a Double (Coordinate or Product Rating style)
+        Pair<Integer, Double> productRating = new Pair<>(101, 4.8);
+        System.out.println("Product ID " + productRating.getKey() + " has rating: " + productRating.getValue());
+    }
+}
