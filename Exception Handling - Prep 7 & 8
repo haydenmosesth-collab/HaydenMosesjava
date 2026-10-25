@@ -1,0 +1,29 @@
+//Multiple catch block
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            int a = sc.nextInt(), b = sc.nextInt();
+            System.out.println("Result = " + (a / b));
+        } catch (ArithmeticException e) {
+            System.out.println("Exception: / by zero");
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Input");
+        }
+    }
+}
+
+
+//finally keyword
+class Main {
+    public static void main(String[] args) {
+        try {
+            System.out.println(10 / 0);
+        } catch (ArithmeticException e) {
+            System.out.println("Exception: / by zero");
+        } finally {
+            System.out.println("Program execution completed");
+        }
+    }
+}
