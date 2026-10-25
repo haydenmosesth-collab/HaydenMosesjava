@@ -1,0 +1,30 @@
+//Exception Handling Input validation before division
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt();
+        if (b == 0)
+            System.out.println("Cannot divide by zero");
+        else
+            System.out.println("Result = " + (a / b));
+    }
+}
+
+
+//Exception Handling with user-friendly messages
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            int a = sc.nextInt(), b = sc.nextInt();
+            if (b == 0)
+                System.out.println("Error: Division by zero is not allowed.");
+            else
+                System.out.println("Quotient = " + (a / b));
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Input");
+        }
+    }
+}
