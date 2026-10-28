@@ -1,0 +1,22 @@
+class Student {
+    public void display() {
+        System.out.println("Hello, Student!");
+    }
+}
+
+public class ReflectionExample {
+    public static void main(String[] args) throws Exception {
+
+        // Get class information using Reflection
+        Class<?> c = Student.class;
+
+        System.out.println("Class Name: " + c.getName());
+
+        // Create an object dynamically
+        Object obj = c.getDeclaredConstructor().newInstance();
+
+        // Access and invoke the method
+        java.lang.reflect.Method m = c.getMethod("display");
+        m.invoke(obj);
+    }
+}
