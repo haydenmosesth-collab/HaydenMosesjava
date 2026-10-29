@@ -1,0 +1,18 @@
+class Main {
+    public static void main(String[] args) throws Exception {
+        Thread a = new Thread(() -> {
+            for (int i = 1; i <= 10; i++)
+                System.out.println("Runner A : " + i);
+            System.out.println("Runner A Finished!");
+        });
+        Thread b = new Thread(() -> {
+            for (int i = 1; i <= 10; i++)
+                System.out.println("Runner B : " + i);
+            System.out.println("Runner B Finished!");
+        });
+        a.start();
+        b.start();
+        a.join();
+        b.join();
+    }
+}
