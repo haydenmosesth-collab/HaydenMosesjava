@@ -1,0 +1,23 @@
+class Main {
+    public static void main(String[] args) throws Exception {
+        System.out.println("Sequential Execution");
+        System.out.println("Task 1 Started");
+        System.out.println("Task 1 Completed");
+        System.out.println("Task 2 Started");
+        System.out.println("Task 2 Completed");
+
+        System.out.println("Parallel Execution");
+        Thread t1 = new Thread(() -> {
+            System.out.println("Task 1 Started");
+            System.out.println("Task 1 Completed");
+        });
+        Thread t2 = new Thread(() -> {
+            System.out.println("Task 2 Started");
+            System.out.println("Task 2 Completed");
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+    }
+}
