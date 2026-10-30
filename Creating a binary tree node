@@ -1,0 +1,14 @@
+class Node<T> {
+    T data;
+    Node<T> left, right;
+    Node(T d) { data = d; }
+
+    public static void main(String[] args) {
+        Node<Integer> r = new Node<>(10);
+        r.left = new Node<>(5);
+        r.right = new Node<>(20);
+        System.out.println("Root Node : " + r.data);
+        System.out.println("Left Child : " + r.left.data);
+        System.out.println("Right Child : " + r.right.data);
+    }
+}
