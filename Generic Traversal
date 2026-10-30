@@ -1,0 +1,48 @@
+//Recursive preorder traversal
+class Main {
+    static class N {
+        int d; N l, r;
+        N(int d) { this.d = d; }
+    }
+    static void pre(N n) {
+        if (n == null) return;
+        System.out.print(n.d + " ");
+        pre(n.l); pre(n.r);
+    }
+    public static void main(String[] args) {
+        N n = new N(10);
+        n.l = new N(5); n.r = new N(20);
+        pre(n);
+    }
+}
+
+//Preorder, inorder and postorder
+class Main {
+    static class N {
+        int d; N l, r;
+        N(int d) { this.d = d; }
+    }
+    static void pre(N n) {
+        if (n != null) {
+            System.out.print(n.d + " ");
+            pre(n.l); pre(n.r);
+        }
+    }
+    static void in(N n) {
+        if (n != null) {
+            in(n.l); System.out.print(n.d + " "); in(n.r);
+        }
+    }
+    static void post(N n) {
+        if (n != null) {
+            post(n.l); post(n.r); System.out.print(n.d + " ");
+        }
+    }
+    public static void main(String[] args) {
+        N n = new N(10);
+        n.l = new N(5); n.r = new N(20);
+        System.out.print("Preorder : "); pre(n);
+        System.out.print("\nInorder : "); in(n);
+        System.out.print("\nPostorder: "); post(n);
+    }
+}
