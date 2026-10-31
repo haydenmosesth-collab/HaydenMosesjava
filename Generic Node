@@ -1,0 +1,23 @@
+//Creating a generic node
+class Node<T> {
+    T data;
+    Node(T data) { this.data = data; }
+
+    public static void main(String[] args) {
+        Node<Integer> n = new Node<>(50);
+        System.out.println("Node Value: " + n.data);
+    }
+}
+
+//Linking two nodes
+class Node<T> {
+    T data;
+    Node<T> next;
+    Node(T data) { this.data = data; }
+
+    public static void main(String[] args) {
+        Node<Integer> a = new Node<>(10);
+        a.next = new Node<>(20);
+        System.out.println(a.data + " -> " + a.next.data);
+    }
+}
