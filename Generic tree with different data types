@@ -1,0 +1,13 @@
+class Node<T> {
+    T data;
+    Node(T data) { this.data = data; }
+
+    public static void main(String[] args) {
+        Node<Integer> a = new Node<>(10);
+        Node<String> b = new Node<>("ABC");
+        Node<Character> c = new Node<>('D');
+        System.out.println("Integer Tree:\n" + a.data);
+        System.out.println("\nString Tree:\n" + b.data);
+        System.out.println("\nCharacter Tree:\n" + c.data);
+    }
+}
