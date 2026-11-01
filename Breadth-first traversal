@@ -1,0 +1,20 @@
+import java.util.*;
+class Main {
+    static class N {
+        int d; N l, r;
+        N(int d) { this.d = d; }
+    }
+    public static void main(String[] args) {
+        N n = new N(10);
+        n.l = new N(5); n.r = new N(20);
+        n.l.l = new N(2); n.l.r = new N(8);
+        Queue<N> q = new LinkedList<>();
+        q.offer(n);
+        while (!q.isEmpty()) {
+            N x = q.poll();
+            System.out.print(x.d + " ");
+            if (x.l != null) q.offer(x.l);
+            if (x.r != null) q.offer(x.r);
+        }
+    }
+}
