@@ -1,0 +1,29 @@
+//Basic user input
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome, " + sc.nextLine() + "!");
+    }
+}
+
+//Reading and writing data
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter text:");
+        System.out.println("You entered: " + sc.nextLine());
+    }
+}
+
+
+//Displaying host name and IP address
+import java.net.*;
+class Main {
+    public static void main(String[] args) throws Exception {
+        InetAddress a = InetAddress.getLocalHost();
+        System.out.println("Host Name : " + a.getHostName());
+        System.out.println("IP Address : " + a.getHostAddress());
+    }
+}
