@@ -1,0 +1,27 @@
+//Server.java
+import java.net.*;
+import java.io.*;
+class Server {
+    public static void main(String[] args) throws Exception {
+        try (ServerSocket ss = new ServerSocket(5000);
+             Socket s = ss.accept();
+             BufferedReader in = new BufferedReader(
+                 new InputStreamReader(s.getInputStream()))) {
+            System.out.println("Server: Received: " + in.readLine());
+        }
+    }
+}
+
+
+//Client.java
+import java.net.*;
+import java.io.*;
+class Client {
+    public static void main(String[] args) throws Exception {
+        try (Socket s = new Socket("localhost", 5000);
+             PrintWriter out = new PrintWriter(s.getOutputStream(), true)) {
+            out.println("Hello Server");
+            System.out.println("Client: Hello Server");
+        }
+    }
+}
