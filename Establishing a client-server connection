@@ -1,0 +1,22 @@
+//Server.java
+import java.net.*;
+class Server {
+    public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(5000);
+        System.out.println("Server: Waiting...");
+        Socket s = ss.accept();
+        System.out.println("Client Connected");
+        s.close();
+        ss.close();
+    }
+}
+
+//Client.java
+import java.net.*;
+class Client {
+    public static void main(String[] args) throws Exception {
+        try (Socket s = new Socket("localhost", 5000)) {
+            System.out.println("Client: Connected Successfully");
+        }
+    }
+}
