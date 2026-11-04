@@ -1,0 +1,12 @@
+import java.net.*;
+class Main {
+    public static void main(String[] args) {
+        try (Socket s = new Socket("localhost", 5000)) {
+            System.out.println("Connected");
+        } catch (Exception e) {
+            System.out.println("Unable to connect to the server.");
+        } finally {
+            System.out.println("Client: Socket Closed");
+        }
+    }
+}
