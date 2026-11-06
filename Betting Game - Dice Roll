@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextLine()) return;
+        
+        String[] diceLine = sc.nextLine().trim().split("\\s+");
+        int X = sc.nextInt();
+        int Y = sc.nextInt();
+        
+        long netGainLoss = 0;
+        
+        for (String s : diceLine) {
+            if (s.isEmpty()) continue;
+            int roll = Integer.parseInt(s);
+            if (roll % 2 != 0) {
+                netGainLoss += X; // Odd number: gains Rs.X
+            } else {
+                netGainLoss -= Y; // Even number: loses Rs.Y
+            }
+        }
+        
+        System.out.println(netGainLoss);
+    }
+}
