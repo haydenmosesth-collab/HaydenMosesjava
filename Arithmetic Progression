@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Read the first three terms of the arithmetic progression
+        int a1 = sc.nextInt();
+        int a2 = sc.nextInt();
+        int a3 = sc.nextInt();
+        
+        // Read N
+        int n = sc.nextInt();
+        
+        // Calculate the common difference (d)
+        int d = a2 - a1;
+        
+        // Calculate the Nth term using the formula: a_n = a1 + (n - 1) * d
+        int nthTerm = a1 + (n - 1) * d;
+        
+        // Print the result
+        System.out.println(nthTerm);
+    }
+}
