@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String expr = sc.next();
+        
+        // Split the expression by operators (+, -, *, /) and '='
+        String[] parts = expr.split("[+\\-*/=]");
+        
+        long a = Long.parseLong(parts[0]);
+        long b = Long.parseLong(parts[1]);
+        long c = Long.parseLong(parts[2]);
+        
+        // Check which operator satisfies a [operator] b == c
+        if (a + b == c) {
+            System.out.println("+");
+        } else if (a - b == c) {
+            System.out.println("-");
+        } else if (a * b == c) {
+            System.out.println("*");
+        } else if (b != 0 && a / b == c) {
+            System.out.println("/");
+        }
+    }
+}
