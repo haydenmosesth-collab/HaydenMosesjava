@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) return;
+        
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        
+        // Read the class start time in 24-hour format (e.g., "9:30")
+        String startTimeStr = sc.next();
+        int startMinutes = convertToMinutes(startTimeStr);
+        
+        // Count how many students arrive on time (arrival time <= class start time)
+        int onTimeCount = 0;
+        for (int i = 0; i < n; i++) {
+            String arrivalTimeStr = sc.next();
+            if (convertToMinutes(arrivalTimeStr) <= startMinutes) {
+                onTimeCount++;
+            }
+        }
+        
+        // If on-time students are fewer than M, the class is cancelled ("Yes")
+        if (onTimeCount < m) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+    
+    // Helper method to convert "HH:MM" format into total minutes from midnight
+    private static int convertToMinutes(String timeStr) {
+        String[] parts = timeStr.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+        return hours * 60 + minutes;
+    }
+}
