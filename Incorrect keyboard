@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        if (!sc.hasNext()) return;
+        String w = sc.next();
+        
+        long count = 1;
+        
+        for (int i = 0; i < w.length(); i++) {
+            char ch = w.charAt(i);
+            // If the character can be a substitute for another letter (T, D, L, F),
+            // it doubles the number of possible words.
+            if (ch == 'T' || ch == 'D' || ch == 'L' || ch == 'F') {
+                count *= 2;
+            }
+        }
+        
+        System.out.println(count);
+        sc.close();
+    }
+}
