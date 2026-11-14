@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Read array lengths
+        if (!sc.hasNextInt()) return;
+        int l1 = sc.nextInt();
+        int l2 = sc.nextInt();
+        
+        // Use Sets to store unique elements of each array
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        
+        for (int i = 0; i < l1; i++) {
+            set1.add(sc.nextInt());
+        }
+        
+        for (int i = 0; i < l2; i++) {
+            set2.add(sc.nextInt());
+        }
+        
+        int distinctCount = 0;
+        
+        // Count elements present in set1 but not in set2
+        for (int num : set1) {
+            if (!set2.contains(num)) {
+                distinctCount++;
+            }
+        }
+        
+        // Count elements present in set2 but not in set1
+        for (int num : set2) {
+            if (!set1.contains(num)) {
+                distinctCount++;
+            }
+        }
+        
+        System.out.println(distinctCount);
+        sc.close();
+    }
+}
