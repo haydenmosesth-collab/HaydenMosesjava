@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Read x and y coordinates for point 1
+        double x1 = sc.nextDouble();
+        double y1 = sc.nextDouble();
+        
+        // Read x and y coordinates for point 2
+        double x2 = sc.nextDouble();
+        double y2 = sc.nextDouble();
+        
+        // Calculate Euclidean distance: sqrt((x2 - x1)^2 + (y2 - y1)^2)
+        double length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        
+        // Print formatted to two decimal places
+        System.out.printf("%.2f\n", length);
+        
+        sc.close();
+    }
+}
