@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Hello {
+
+    static int minSteps(int x, int y, int z) {
+        int big = Math.max(x, y);
+        int small = Math.min(x, y);
+
+        // fill a can and it already holds z
+        if (z == big || z == small) return 1;
+
+        int a = big, b = 0;   // a = larger can, b = smaller can
+        int steps = 1;        // fill larger can
+
+        while (true) {
+            // pour larger -> smaller
+            int p = Math.min(a, small - b);
+            a -= p;
+            b += p;
+            steps++;
+            if (a == z || b == z) return steps;
+
+            if (a == 0) return -1;   // larger can finished
+
+            // smaller can is full -> empty it
+            b = 0;
+            steps++;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt(), y = sc.nextInt(), z = sc.nextInt();
+        System.out.println(minSteps(x, y, z));
+        sc.close();
+    }
+}
