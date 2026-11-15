@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Hello {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        
+        // Split the time string into hours and minutes
+        String[] parts = s.split(":");
+        if (parts.length != 2) {
+            System.out.print("INVALIDINPUT");
+            return;
+        }
+        
+        try {
+            int hh = Integer.parseInt(parts[0]);
+            int mm = Integer.parseInt(parts[1]);
+            
+            // Check valid ranges for hours (0 to 24) and minutes (0 to 59)
+            // Special case: 24:00 is valid (midnight), but 24:01+ is invalid
+            if (hh < 0 || hh > 24 || mm < 0 || mm > 59 || (hh == 24 && mm > 0)) {
+                System.out.print("INVALIDINPUT");
+                return;
+            }
+            
+            // 00:00 or 24:00 is midnight (AM)
+            // 12:00 is noon (PM)
+            if ((hh == 0 && mm == 0) || (hh == 24 && mm == 0)) {
+                System.out.print("AM");
+            } else if (hh >= 0 && hh < 12) {
+                System.out.print("AM");
+            } else {
+                System.out.print("PM");
+            }
+            
+        } catch (NumberFormatException e) {
+            System.out.print("INVALIDINPUT");
+        }
+    }
+}
