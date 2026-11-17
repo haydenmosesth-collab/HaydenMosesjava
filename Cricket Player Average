@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        if (!sc.hasNextLine()) {
+            return;
+        }
+        
+        String line1 = sc.nextLine().trim();
+        String line2 = sc.hasNextLine() ? sc.nextLine().trim() : "";
+        
+        if (line1.isEmpty() || line2.isEmpty()) {
+            System.out.println("INVALIDINPUT");
+            return;
+        }
+        
+        String[] p1Str = line1.split("\\s+");
+        String[] p2Str = line2.split("\\s+");
+        
+        int[] p1 = new int[p1Str.length];
+        long sum1 = 0;
+        for (int i = 0; i < p1Str.length; i++) {
+            p1[i] = Integer.parseInt(p1Str[i]);
+            if (p1[i] < 0) {
+                System.out.println("INVALIDINPUT");
+                return;
+            }
+            sum1 += p1[i];
+        }
+        
+        int[] p2 = new int[p2Str.length];
+        long sum2 = 0;
+        for (int i = 0; i < p2Str.length; i++) {
+            p2[i] = Integer.parseInt(p2Str[i]);
+            if (p2[i] < 0) {
+                System.out.println("INVALIDINPUT");
+                return;
+            }
+            sum2 += p2[i];
+        }
+        
+        double avg1 = (double) sum1 / p1.length;
+        double avg2 = (double) sum2 / p2.length;
+        
+        if (avg1 > avg2) {
+            System.out.println(sum1);
+        } else if (avg2 > avg1) {
+            System.out.println(sum2);
+        } else {
+            // If averages are equal, print the highest total runs
+            if (sum1 >= sum2) {
+                System.out.println(sum1);
+            } else {
+                System.out.println(sum2);
+            }
+        }
+    }
+}
